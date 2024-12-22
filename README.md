@@ -23,11 +23,11 @@ A DeFi yield farming platform where users can stake LP tokens and earn DAPP toke
 
 ## 🛠 Tech Stack
 
-- **Smart Contracts**: Solidity ^0.8.x
+- **Smart Contracts**: Solidity ^0.8.26
 - **Blockchain**: Ethereum
 - **Development**: Hardhat
 - **Frontend**: React + Vite
-- **Web3**: ethers.js
+- **Interactions**: ethers.js
 
 ## 📁 Project Structure
 
@@ -124,4 +124,4 @@ Twitter: [![X (formerly Twitter) URL](https://img.shields.io/twitter/url?url=htt
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details.
