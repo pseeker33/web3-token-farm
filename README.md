@@ -1,7 +1,7 @@
 # 🌾 DeFi Token Farm Project 
 
 <p align="center">
-    <img src="./frontend/public/defi-farm.jpg" height=400>
+    <img src="./frontend/public/images/defi-farm.jpg" height=400>
 </p>
 
 [![Solidity](https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white)](https://docs.soliditylang.org/)
@@ -33,13 +33,16 @@ A DeFi yield farming platform where users can stake LP tokens and earn DAPP toke
 
 ```
 DeFi-Farm/
-├── contracts/
-│   ├── DappToken.sol
-│   ├── LPToken.sol
-│   └── TokenFarm.sol
-├── scripts/
-│   ├── deploy.js
-│   └── transfer-ownership.js
+├── backend/
+│   ├── contracts/
+│   │   ├── DappToken.sol
+│   │   ├── LPToken.sol
+│   │   └── TokenFarm.sol
+│   ├── scripts/
+│   │   └── deploy.js
+│   ├── test/
+│   │    └── TokenFarm.js
+│   └── hardhat.config.js 
 ├── frontend/
 │   ├── src/
 │   │   ├── App.jsx
