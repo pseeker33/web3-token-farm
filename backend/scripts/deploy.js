@@ -27,6 +27,11 @@ async function main() {
   await tokenFarm.waitForDeployment();
   console.log("TokenFarm deployed to: ", await tokenFarm.getAddress());
 
+  // Transferir la propiedad del DappToken al TokenFarm
+  console.log("\nTransferring DappToken ownership to TokenFarm...");
+  await dappToken.transferOwnership(await tokenFarm.getAddress());
+  console.log("DappToken ownership transferred to TokenFarm");
+
   // Opcional: Mint algunos tokens iniciales para testing
   const INITIAL_SUPPLY = ethers.parseEther("1000000"); // 1 millón de tokens
   await lpToken.mint(deployer.address, INITIAL_SUPPLY);
