@@ -1,0 +1,197 @@
+/* Estilos generales */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: white;
+}
+
+/* Contenedor principal */
+.container {
+  min-height: 100vh;
+  padding: 2rem;
+  /* flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box; */
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Cabecera */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem; */
+}
+
+/* Títulos y texto */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+/* Sección de wallet */
+.wallet-section {
+  margin: 20px 0;
+}
+
+.wallet-address {
+  background: #f5f5f5;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: black;
+}
+
+
+p {
+  font-size: 0.875rem;
+  color: gray;
+}
+
+/* Contenido del balance y el formulario */
+.account-details {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.balance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 0.875rem;
+  color: gray;
+  margin: 0 0 0.5rem 0;
+}
+
+.card p {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: black;
+  margin: 0;
+}
+
+/* transaction-actions: Contenedor de acciones de transacción */
+.transaction-actions {
+  margin-top: 2rem;
+}
+
+/* deposit-container: Contenedor para el input de depósito y el botón */
+.deposit-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.deposit-container input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+}
+
+/* withdraw-reward: Contenedor para los botones de retiro y reclamar recompensas */
+.withdraw-reward {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.debug-section {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Inputs */
+input[type="number"] {
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+}
+
+/* Botones */
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* Alerta de red incorrecta */
+.alert {
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  margin-top: 1rem;
+  color: #dc2626;
+}
+
+.alert-description {
+  color: #dc2626;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .balance-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .deposit-container {
+    flex-direction: column;
+  }
+  
+  .withdraw-reward {
+    flex-direction: column;
+  }
+  
+  button {
+    width: 100%;
+  }
+}
