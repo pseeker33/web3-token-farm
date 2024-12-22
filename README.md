@@ -63,10 +63,11 @@ DeFi-Farm/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/defi-farm.git
-cd defi-farm
+git clone https://github.com/pseeker33/web3-token-farm.git
 
-# Install dependencies
+
+# Install backend dependencies
+cd backend
 npm install
 
 # Install frontend dependencies
@@ -74,7 +75,7 @@ cd frontend
 npm install
 ```
 
-### Deploy Contracts
+### Deploy Contracts on localhost
 
 ```bash
 # Start local node
@@ -113,10 +114,13 @@ npm run dev
 
 ## 📫 Contact
 
-[Tu Nombre]
-Email: [tu.email@ejemplo.com]
-LinkedIn: [tu-perfil-linkedin]
-Twitter: [@tu_usuario]
+**Hoover Zavala**  
+**Data analyst | Web developer | Blockchain enthusiast | Python | Bubble.io | React.js | Solidity**  
+
+Email: zavalah222@gmail.com      
+LinkedIn: [![Follow us on LinkedIn](https://img.shields.io/badge/LinkedIn-pseeker-blue?style=flat&logo=linkedin&logoColor=b0c0c0&labelColor=363D44)](https://www.linkedin.com/in/hoover-zavala-63a64825b/)  
+Twitter: [![X (formerly Twitter) URL](https://img.shields.io/twitter/url?url=https%3A%2F%2Ftwitter.com%2Fpseeker222&label=%40pseeker222)](https://twitter.com/pseeker222)
+
 
 ## 📝 License
 
