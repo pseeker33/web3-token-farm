@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { networkConfig, getSupportedChainId } from "./config";
+import { FaWallet, FaCoins, FaArrowDown, FaArrowUp, FaSun, FaMoon } from "react-icons/fa"
 import "./App.css";
 const isDevelopment = false; // Change to true for debugging mode
 
@@ -14,6 +15,8 @@ export default function App() {
   const [stakedBalance, setStakedBalance] = useState("0");
   const [pendingRewards, setPendingRewards] = useState("0");
   const [depositAmount, setDepositAmount] = useState("");
+  const [darkMode, setDarkMode] = useState(false)
+
 
   // Verificar y manejar cambios de red
   const handleChainChanged = (chainId, isInitialConnection = false) => {
@@ -342,7 +345,6 @@ export default function App() {
 
   // Funcion Debug para verificar que el TokenFarm tiene permisos para acuñar DappTokens
   // Se llama a esta función después de conectar la wallet (buscalo en el useEffect)
-
   const checkMintingPermissions = async () => {
     try {
         const provider = new ethers.BrowserProvider(window.ethereum);
@@ -417,6 +419,19 @@ export default function App() {
   }
 };
 
+useEffect(() => {
+  const isDark = localStorage.getItem("darkMode") === "true"
+  setDarkMode(isDark)
+  document.body.classList.toggle("dark-mode", isDark)
+}, [])
+
+const toggleDarkMode = () => {
+  const newDarkMode = !darkMode
+  setDarkMode(newDarkMode)
+  localStorage.setItem("darkMode", newDarkMode)
+  document.body.classList.toggle("dark-mode", newDarkMode)
+}
+
   // Cleanup al desmontar
   useEffect(() => {
     return () => {
@@ -446,87 +461,101 @@ export default function App() {
     }
   }, []); // Solo se ejecuta una vez al montar el componente
 
-    return (
-      <div className="container">
-        <div className="content-wrapper">
-          <div className="header">
-            <h1>Token Farm</h1>
+  useEffect(() => {
+    const isDark = localStorage.getItem("darkMode") === "true"
+    setDarkMode(isDark)
+    document.body.classList.toggle("dark-mode", isDark)
+  }, [])
 
-            <div className="wallet-section">
-              {!account ? (
-                <button onClick={connectWallet}>Connect Wallet</button>
-              ) : (
-                <span className="wallet-address">
-                  {account.slice(0, 6)}...{account.slice(-4)}
-                </span>
-              )}
+  return (
+    <div className="app-container">
+      <button className="theme-toggle" onClick={toggleDarkMode}>
+        {darkMode ? <FaSun /> : <FaMoon />}
+      </button>
+      <div className="content-wrapper">
+        <h1 className="title">Dapp Token Farm</h1>
+
+        <div className="wallet-section">
+          {!account ? (
+            <button className="connect-button" onClick={connectWallet}>
+              <FaWallet className="icon" /> Connect Wallet
+            </button>
+          ) : (
+            <span className="wallet-address">
+              <FaWallet className="icon" /> {account.slice(0, 6)}...{account.slice(-4)}
+            </span>
+          )}
+        </div>
+
+        {wrongNetwork && (
+          <div className="alert">
+          <div className="alert-description">
+            Please connect to a supported network (
+            {Object.values(networkConfig)
+              .map((net) => net.networkName)
+              .join(", ")}
+            )
+          </div>
+        </div>
+        )}
+
+        {account && (
+          <div className="account-details">
+            <div className="balance-grid">
+              <div className="card">                
+                <h3 className="card-header">
+                  LP Balance <FaCoins className="card-icon" />
+                </h3>
+                <p>{lpBalance} LP</p>
+              </div>
+              <div className="card">                
+                <h3 className="card-header">
+                  Staked Balance <FaArrowDown className="card-icon" />
+                </h3>
+                <p>{stakedBalance} LP</p>
+              </div>
+              <div className="card">                
+                <h3 className="card-header">
+                  Pending Rewards 
+                  <FaArrowUp className="card-icon"/>
+                </h3>
+                <p>{pendingRewards} DAPP</p>
+              </div>
             </div>
 
-            {wrongNetwork && (
-              <div className="alert">
-                <div className="alert-description">
-                  Please connect to a supported network (
-                  {Object.values(networkConfig)
-                    .map((net) => net.networkName)
-                    .join(", ")}
-                  )
-                </div>
+            <div className="transaction-actions">
+              <div className="deposit-container">
+                <input
+                  type="number"
+                  value={depositAmount}
+                  onChange={(e) => setDepositAmount(e.target.value)}
+                  placeholder="Amount to deposit"
+                />
+                <button onClick={deposit} disabled={loading}>
+                  Deposit
+                </button>
+              </div>
+
+              <div className="withdraw-reward">
+                <button onClick={withdraw} disabled={loading}>
+                  Withdraw All
+                </button>
+                <button onClick={claimRewards} disabled={loading}>
+                  Claim Rewards
+                </button>
+              </div>
+            </div>
+
+            {isDevelopment && (
+              <div className="debug-section">
+                <button onClick={debugOwnership}>Check Ownership</button>
+                <button onClick={transferDappTokenOwnership}>Transfer Ownership</button>
+                <button onClick={debugRewardsCalculation}>Rewards Info</button>
               </div>
             )}
           </div>
-
-          {account && (
-            <div className="account-details">
-
-              <div className="balance-grid">
-                <div className="card">
-                  <h3>LP Balance</h3>
-                  <p>{lpBalance} LP</p>
-                </div>
-                <div className="card">
-                  <h3>Staked Balance</h3>
-                  <p>{stakedBalance} LP</p>
-                </div>
-                <div className="card">
-                  <h3>Pending Rewards</h3>
-                  <p>{pendingRewards} DAPP</p>
-                </div>
-              </div>
-
-              <div className="transaction-actions">
-                <div className="deposit-container">
-                  <input
-                    type="number"
-                    value={depositAmount}
-                    onChange={(e) => setDepositAmount(e.target.value)}
-                    placeholder="Amount to deposit"
-                  />
-                  <button onClick={deposit} disabled={loading}>
-                    Deposit
-                  </button>
-                </div>
-
-                <div className="withdraw-reward">
-                  <button onClick={withdraw} disabled={loading}>
-                    Withdraw All
-                  </button>
-                  <button onClick={claimRewards} disabled={loading}>
-                    Claim Rewards
-                  </button>                  
-                </div>
-              </div>
-              
-              {isDevelopment && (
-                <div className="debug-section">
-                  <button onClick={debugOwnership}>Check Ownership</button>
-                  <button onClick={transferDappTokenOwnership}>Transfer Ownership</button>
-                  <button onClick={debugRewardsCalculation}>Rewards Info</button>
-                </div>
-              )}
-            </div>
-
-          )}
-        </div>
+        )}
       </div>
-    );
+    </div>
+  )
 }
